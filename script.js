@@ -68,7 +68,7 @@ btnScrollTo.addEventListener('click', function (e) {
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
 
-  // MAtching strategy
+  // Matching strategy
   if (e.target.classList.contains('nav__link')) {
     const id = e.target.getAttribute('href');
     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
@@ -84,6 +84,34 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 //     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
 //   });
 // });
+
+/////////////// BUILDING A TABBED COMPONENT
+
+// tabbed component
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContnet = document.querySelectorAll('.operations__content');
+
+tabsContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.operations__tab');
+  // console.log(clicked);
+
+  // Guard Clause
+  if (!clicked) return;
+
+  // Remove active Classes
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabsContnet.forEach(c => c.classList.remove('operations__content--active'));
+
+  // Active Tab
+  clicked.classList.add('operations__tab--active');
+
+  // Activate content area
+  // console.log(clicked.dataset.tab);
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
 
 //////////////////////////////////////////////////////////
 //////////////////// ADVANCED DOM ////////////////////////
@@ -238,5 +266,43 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 
 document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor;
+});
+*/
+
+/*
+///////////////// DOM TRAVERSING
+
+const h1 = document.querySelector('h1');
+
+// Going Downards: Child
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+h1.firstElementChild.style.color = 'white';
+h1.lastElementChild.style.color = 'black';
+
+// Going upwards: Parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+h1.closest('h1').style.background = 'var(--gradient-primary)';
+
+// Going Sideways: Siblings
+// Can only access direct siblings
+
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+// a trick to access all siblings (going up to parent and back down to children)
+console.log(h1.parentElement.children);
+[...h1.parentElement.children].forEach(function (el) {
+  if (el !== h1) {
+    el.style.transform = 'scale(0.5)';
+  }
 });
 */
