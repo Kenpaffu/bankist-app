@@ -513,3 +513,5 @@ console.log(h1.parentElement.children);
   }
 });
 */
+
+///////////// LIFECYLCE DOM EVENTS
